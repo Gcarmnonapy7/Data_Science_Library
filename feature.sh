@@ -21,3 +21,13 @@ git commit -m "$COMMIT_MESSAGE"
     
 echo "Pushing changes to remote repository (Check the pull request)"
 git push -u origin feature/${BRANCH_NAME} 
+
+git checkout main
+
+read -p "Do you want to delete the branch feature/${BRANCH_NAME}? (y/n): " DELETE_BRANCH
+if [ "$DELETE_BRANCH" == "y" ] || [ "$DELETE_BRANCH" == "Y" ]; then
+    git branch -d feature/${BRANCH_NAME}
+    echo "Branch feature/${BRANCH_NAME} deleted."
+else
+    echo "Branch feature/${BRANCH_NAME} not deleted."
+fi
