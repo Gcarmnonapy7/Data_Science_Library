@@ -20,10 +20,4 @@ echo "Committing changes with message: $COMMIT_MESSAGE"
 git commit -m "$COMMIT_MESSAGE"
     
 echo "Pushing changes to remote repository (Check the pull request)"
-git push origin ${BRANCH_NAME} 
-
-# Delete branch locally
-
-git checkout main
-
-git branch -D feature/${BRANCH_NAME}
+git push -u origin feature/${BRANCH_NAME} 
