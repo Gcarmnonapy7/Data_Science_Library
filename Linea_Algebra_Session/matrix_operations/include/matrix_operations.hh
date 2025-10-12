@@ -1,0 +1,59 @@
+#ifndef MATRIX_OPERATIONS_HH
+#define MATRIX_OPERATIONS_HH
+#include <vector>
+#include <stdexcept>
+// 'MatrixOperations' class provides basic operations for matrices like addition, subtraction, and multiplication.
+// The class uses std::vector to represent matrices and includes error handling for dimension mismatches.
+// Note : The methods for subtraction and multiplication are declared but not defined in this snippet. 
+// And needs improvement in the Big 0 notation and dealing with N dimensions matrices.
+
+class MatrixOperations {
+    std::vector<std::vector<int>> addingMatrices(const std::vector<std::vector<int>>& matrix1, const std::vector<std::vector<int>>& matrix2)
+    {  
+         // Initialize the result matrix with zeros and the same dimensions as the input matrices
+        auto sum_matrix = std::vector<std::vector<int>>(matrix1.size(), std::vector<int>(matrix1[0].size(), 0));
+        if (matrix1.size() != matrix2.size() || matrix1[0].size() != matrix2[0].size()) {
+            throw std::invalid_argument("Matrices must have the same dimensions for addition.");
+        }
+
+        for (auto i = 0; i < matrix1.size(); ++i){
+            for (auto j = 0; j < matrix2[0].size(); ++j){
+                sum_matrix[i][j] = matrix1[i][j] + matrix2[i][j];
+            }
+        }
+
+        return sum_matrix;
+    };
+
+    std::vector<std::vector<int>> subtractingMatrices(const std::vector<std::vector<int>>& matrix1, const std::vector<std::vector<int>>& matrix2){
+        
+
+        auto difference_matrix = std::vector<std::vector<int>>(matrix1.size(), std::vector<int>(matrix1[0].size(),0));
+        if (matrix1.size() != matrix2.size() || matrix1[0].size() != matrix2[0].size()){
+            throw std::invalid_argument("Matrices must have the same dimensions");
+        }
+
+        for (auto i = 0; i < matrix1.size(); ++i){
+            for (auto j = 0; j < matrix2[0].size(); ++j){
+                difference_matrix[i][j] = matrix1[i][j] - matrix2[i][j];
+            }
+        }
+        return difference_matrix;
+    };
+
+    void multiplyingMatrices(const std::vector<std::vector<int>>& matrix1, const std::vector<std::vector<int>>& matrix2){};
+    
+    void transposingMatrix(const std::vector<std::vector<int>>& matrix){
+        auto transposed_matrix = std::vector<std::vector<int>>(matrix[0].size(), std::vector<int>(matrix.size(), 0));
+        for (auto num_row = 0; num_row < matrix.size(); ++ num_row ){
+            for (auto num_col = 0; num_col < matrix[0].size(); ++ num_col){
+                transposed_matrix[num_col][num_row] = matrix[num_row][num_col];
+            }
+        }
+    };
+
+    // Implementing anothers operations like determinant, inverse, is_symmetric, is_identity, identity_matrix with same shape, etc.
+
+    
+};
+#endif
